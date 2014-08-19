@@ -3,7 +3,7 @@ import re
 import random
 from globfile import *
 from math import *
-sys.do_not_write_bytecode = True
+sys.dont_write_bytecode = True
 PI = 3.1415926535
 EE = 2.7182818284 
 

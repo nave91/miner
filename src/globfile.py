@@ -1,6 +1,5 @@
 import sys
-sys.do_not_write_bytecode = True
-
+sys.dont_write_bytecode = True
 #
 #Properties for table
 #

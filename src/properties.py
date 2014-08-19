@@ -2,7 +2,7 @@
 import sys
 import os
 import argparse
-sys.do_not_write_bytecode=True
+sys.dont_write_bytecode=True
 
 def get_args(name,args):
     desc = {

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import math
-sys.do_dot_write_bytecode = True
+sys.dont_write_bytecode = True
 
 def graph2d(listx,listy,labelx,labely,legend,out='out.png'):
     sys.stderr.write('NOTE: Graph is generated with title \"'

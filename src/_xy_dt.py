@@ -1,5 +1,5 @@
 import sys
-sys.do_not_write_bytecode = True
+sys.dont_write_bytecode = True
 import copy
 import numpy as np
 from sklearn import tree

@@ -1,6 +1,6 @@
 #Module to report distances
 from reader import *
-sys.do_not_write_bytecode = True
+sys.dont_write_bytecode = True
 
 def dist(this,that,z,indep,nump):
     #returns distance between this and that

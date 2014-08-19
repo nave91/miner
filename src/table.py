@@ -1,7 +1,7 @@
 import sys
 from globfile import *
 from lib import *
-sys.do_not_write_bytecode=True
+sys.dont_write_bytecode=True
 
 def expected(z,e): #returns expected outcome in str
     out = [c for c in colname[z]]

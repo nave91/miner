@@ -7,7 +7,7 @@ import xy_proj
 from stats import *
 from table import *
 from xy_dt import xy_dt
-sys.do_not_write_bytecode = True
+sys.dont_write_bytecode = True
 
 def bettercheck(one,two,verbose = False):
     #both tests passed, similar

@@ -2,7 +2,7 @@
 #zlst[0] is table with centroids of leaves zlst[1]..zlst[n]
 
 import sys
-sys.do_not_write_bytecode = True
+sys.dont_write_bytecode = True
 
 import xy
 import re

@@ -6,7 +6,7 @@ from globfile import *
 from table import tableprint,outCsv
 from lib import *
 from properties import *
-sys.do_not_write_bytecode = True
+sys.dont_write_bytecode = True
 
 def makeTable(lst,z):
     #Makes table with columns lst and name z

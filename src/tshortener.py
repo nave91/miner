@@ -1,6 +1,6 @@
 
 import sys
-sys.do_not_write_bytecode = True
+sys.dont_write_bytecode = True
 
 import table,reader
 import xy_lib

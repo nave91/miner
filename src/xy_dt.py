@@ -1,5 +1,5 @@
 import sys
-sys.do_not_write_bytecode = True
+sys.dont_write_bytecode = True
 
 import tshortener
 import sklearn as sk
