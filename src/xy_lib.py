@@ -1,4 +1,6 @@
 #library for xy_*.py
+import sys
+sys.do_not_write_bytecode = True
 
 from reader import *
 from dist import *

@@ -1,7 +1,9 @@
 #Module for spectrally clustering data from z and returning zlst
 #zlst[0] is table with centroids of leaves zlst[1]..zlst[n]
 
-#from reader import *
+import sys
+sys.do_not_write_bytecode = True
+
 import xy
 import re
 import sys

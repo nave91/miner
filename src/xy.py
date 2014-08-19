@@ -1,8 +1,10 @@
 #! /usr/env python
+
+
+import sys 
+sys.do_not_write_bytecode = True
+
 from xy_lib import *
-#from xy_globfile import *
-#from maint import *
-import sys #temp
 
 class row:
     def __init__(i,row):

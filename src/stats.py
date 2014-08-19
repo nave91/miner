@@ -1,7 +1,8 @@
-#Modules developed by Dr.Tim Menzies. refer http://menzies.us/cs472
 
+#Modules developed by Dr.Tim Menzies. refer http://menzies.us/cs472
+import sys
+sys.do_not_write_bytecode = True
 import random
-from base import *
 from lib  import *
 
 #---- Cool Classes ----------------------------

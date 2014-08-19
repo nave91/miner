@@ -2,6 +2,7 @@ import os
 import datetime
 import getopt
 import sys
+sys.do_not_write_byte_code = True
 
 def usage():
     print 'Usage: python makedirs.py [-h][-v]'

@@ -1,8 +1,13 @@
-from lib import *
-from _xy_dt import Branches,Branch,_tree,np
+
 import sys
+sys.do_not_write_bytecode = True
+
 import table,reader
 import xy_lib
+
+from lib import *
+from _xy_dt import Branches,Branch,_tree,np
+
 
 def tshortener(z,zlst,colname,data,dep,indep,patt=1.0,discretize=True):
     #The infogain techniques of pruning columns and discretization

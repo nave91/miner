@@ -70,8 +70,8 @@ if __name__ == "__main__":
     #Main table is initialized as "main"
     z = "main"
     readCsv(csvfile,z)
-    if len(args['v'])>-1:
+    if args['v']>-1:
         for i in range(0,len(data[z])):
             for j in range(0,len(data[z])):
                 print dist(data[z][i],data[z][j],z,indep,nump)
-
+        print "#Distances between each row to every row"
