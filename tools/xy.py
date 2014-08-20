@@ -41,6 +41,10 @@ sys.dont_write_bytecode = True
 from xy_lib import *
 
 class row:
+    """
+    Stores rows and its (x,y) coordinates on projected
+    2D pane
+    """
     def __init__(i,row):
         i.row = row
         i.x = 0
@@ -50,7 +54,15 @@ class row:
         return "\n> x: "+str(i.x)+" y: "+str(i.y)+" "+str(i.row)
 
 class xy:
+    """
+    Keeps all the data to recursively split 
+    into 4 quadrants and yield them out
+    """
+
     def __init__(i,z,pz,cols):
+        """
+        i.kept has all data that has to be clustered yet
+        """
         i.xs=0
         i.ys=0
         i.kept=[]
@@ -62,12 +74,14 @@ class xy:
         i.pz = pz
 
     def keep(i,xyz):
+        """
+        Keeps updating into upon adding new rows
+        """
         i.kept+=[xyz]
         i.xs+=xyz.x
         i.ys+=xyz.y
         addRow(xyz.row,i.z)
         i.sds = i.getKeptSds(i.z)
-        #i.sds = i.getNewKeptSds()
 
     def getKeptSds(i,temp_z):
         sds = []
@@ -93,7 +107,9 @@ class xy:
         
 
     def tiles(i,more,mini,oldn,spy,prune,verbose=True,lvl=0):
-            
+        """
+        Yields recursively clustered data in form of Row objects
+        """
         n = len(i.kept)
         repeat = True
         sdcheck = False
@@ -173,52 +189,3 @@ class xy:
                         yield i.kept
                 else:
                     yield i.kept
-
-#########--EXTRAS--##########
-"""
-    def doJoin(i,quads):
-        ret = False
-        for quad in range(0,len(quads)-1):
-            if i.checkSds(quads[quad].getNewKeptSds(),quads[quad+1].getNewKeptSds()):
-                ret = True
-                return ret
-        if i.checkSds(quads[0].getNewKeptSds(),quads[len(quads)-1]):
-            ret = True
-        return ret
-
-    def getNewKeptSds(i):
-        makeTable(colname[i.z],"__xytemp")
-        for r in i.kept:
-            addRow(r.row,"__xytemp")
-        temp = i.getKeptSds("__xytemp")
-        removeTable("__xytemp")
-        return temp
-
-    def checkSds(i,new,old):
-        print new,old
-        #Checks std dev and if new-old < 0.3*new then returns True
-        #True if they are similar,False if they are not
-        cnt = 0.0
-        if len(old) == 0:
-            sys.stderr.write("Error: No continuous dependent variable\n") 
-            sys.exit()
-        if len(old) != len(new): sys.stderr.write("Error: old != new, Check your dep's\n")   
-        for i,j in zip(new,old):
-            one = max(i,j)
-            two = min(i,j)
-            if (one-two) < 0.3*one: cnt += 1
-        print cnt/len(old),"##"
-        if cnt/len(old) > 0.5: return True 
-        else: return False
-
-"""
-"""
-        if prune:
-            if not sdcheck: 
-                if verbose>0: print len(i.kept),"sdchecked gone!"
-                repeat = False
-                i.kept = []
-                i.xs = 0
-                i.ys = 0
-                n = len(i.kept)
-"""
