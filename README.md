@@ -21,14 +21,14 @@ import miner
 or 
 
 ```python
-from miner import *
+from miner.tools import *
 ```
 
 Import specific tools using
 
 ```python 
-from miner import reader
-from miner import xy_dt
+from miner.tools.table import outCsv 
+from miner.tools.xy_dt import *
 ```
 
 More information
