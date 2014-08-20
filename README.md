@@ -6,8 +6,8 @@ Command line tool for data mining.
 Structure
 ---------
 
-src/*.py - command line tools for data mining
-data/*.csv - input data for tools
+* tools/*.py - command line tools for data mining
+* data/*.csv - input data for tools
 
 How to use
 ----------
