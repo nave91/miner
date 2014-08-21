@@ -174,7 +174,7 @@ if __name__ == "__main__":
     z = str(zshort)
     """
     zlst,branches = xy_dt(z,args)
-    #tshortener.rebuild_tree(branches,data)
+
 
     if args['v'] > -1:
         print branches
