@@ -34,4 +34,4 @@ from miner.tools.xy_dt import *
 More information
 ----------------
 
-Check http://blog.naveenl.com/tag/miner/
+Check https://github.com/nave91/miner/wiki
