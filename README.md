@@ -3,6 +3,13 @@ Miner
 
 Command line tool for data mining.
 
+
+Requirements
+------------
+
+* Python 2.7+
+* Scikit-learn 
+
 Structure
 ---------
 
