@@ -49,28 +49,12 @@ sys.dont_write_bytecode = True
 
 def makeTable(lst,z):
     #Makes table with columns lst and name z
-    newdlist(klass,z)
-    newddict(order,z)
-    newdlist(less,z)
-    newdlist(more,z)
-    newdlist(num,z)
-    newdlist(term,z)
-    newdlist(dep,z)
-    newdlist(indep,z)
-    newdlist(nump,z)
-    newdlist(wordp,z)
-    newdlist(colname,z)
-    newdlist(data,z)
-    newddict(count,z)
-    newddict(n,z)
-    newddict(mode,z)
-    newddict(most,z)
-    newddict(hi,z)
-    newddict(lo,z)
-    newddict(mu,z)
-    newddict(m2,z)
-    newddict(sd,z)
-    newddict(mre,z)
+    _dlsts = [klass,less,more,num,term,dep,
+            indep,nump,wordp,colname,data]
+    _ddicts = [order,count,n,mode,most,hi,lo,
+             mu,m2,sd,mre]
+    for _i in _dlsts: newdlist(_i,z)
+    for _i in _ddicts: newddict(_i,z)
     csvindex = -1
     for csvcol in lst:
         isnum=True

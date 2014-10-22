@@ -80,7 +80,7 @@ def expected1(z,e): #returns expected outcome
     sys.stderr.write("Expected1 did not return anything. Fix it. Bye Bye.\n")
     sys.exit()
 
-def rowprint(row,sp=20): #returns neat rows
+def rowprint(row,sp=10): #returns neat rows
     c = "%"+str(sp)+"s"
     columns = [ c % cell for cell in row]
     columns.append("%4s" % '#')
