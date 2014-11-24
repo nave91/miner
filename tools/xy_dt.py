@@ -62,7 +62,7 @@ def xy_dt0(decision_tree,feature_names=None,
         if tree.n_outputs == 1:
             value = value[0, :]
         if tree.children_left[node_id] == _tree.TREE_LEAF and tree.children_right[node_id] == _tree.TREE_LEAF:
-            #temp = np.where(value!=0)[0].tolist()
+            branches.leaves += 1
             temp = np.where(value==max(value))[0].tolist()
             cur_branch.add_clusters(temp)
             cur_branch.add_samples(tree.n_node_samples[node_id])
@@ -76,6 +76,7 @@ def xy_dt0(decision_tree,feature_names=None,
                    tree.n_node_samples[node_id], 
                    str(len(branches.collection.keys())-1))
         else:
+            branches.nodes += 1
             if feature_names is not None:
                 feature = feature_names[tree.feature[node_id]]
             else:
@@ -167,12 +168,12 @@ if __name__ == "__main__":
     #First table is initialized with name "main"
     z = "main"
     readCsv(csvfile,z)
-    """
+    
     import tshortener
     zlst = xy_proj(z,data,args) 
     zshort = tshortener.tshortener(z,zlst,colname,data,dep,indep,0.50)
     z = str(zshort)
-    """
+    
     zlst,branches = xy_dt(z,args)
 
 

@@ -49,6 +49,24 @@ from stats import *
 from table import *
 from xy_dt import xy_dt
 
+class Diff: 
+    def __init__(self,worse,diffs,pop):
+        self.worse = worse
+        self.diffs = diffs
+        self.pop = pop
+        
+    def generate(self,function,model,verbose):
+        return function(self.worse,self.diffs,
+                        model,n=int(self.pop),verbose=verbose)
+            
+    def __str__(self):
+        return ">diff for: "+str(self.worse)+\
+            " is: "+str(self.diffs)+" <"
+
+    def __repr__(self):
+        return ">diff for: "+str(self.worse)+\
+            " is: "+str(self.diffs)+" <"
+
 def bettercheck(one,two,verbose = False):
     #both tests passed, similar
     better,similar,worse = 0,0,0
@@ -209,6 +227,7 @@ def diff(z,args,model=args['m'],verbose=False,checkeach=False):
     
     outdiffs = []
     wclus = []
+    Diffs = []
     for bid,branch in branches.collection.items():
         for cluster in branch.clusters:
             if cluster in worses:
@@ -228,9 +247,11 @@ def diff(z,args,model=args['m'],verbose=False,checkeach=False):
                     
                     C2wced = mutate(C2diffs,wcluster,appender) #before mutated
                     majclass_samples = branches.collection[wbid].samples
-                    for i in C2diffs: outdiffs.append(i)
+                    Diffs.append(Diff(C2wced,C2diffs,majclass_samples*10))
 
-    return formatout(outdiffs),zlst
+                        
+    return Diffs,betters,zlst,branches
+
 
 if __name__ == "__main__":
     name = os.path.basename(__file__).split('.')[0]
@@ -245,6 +266,6 @@ if __name__ == "__main__":
         zlst = xy_proj.xy_proj(z,data,args) 
         zshort = tshortener.tshortener(z,zlst,colname,data,dep,indep,1.0)
         z = str(zshort)
-    differs,zlst = diff(z,args,model=args['m'])
+    print diff(z,args,model=args['m'])
     if args['v'] > 2:
         print differs

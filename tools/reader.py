@@ -53,8 +53,8 @@ def makeTable(lst,z):
             indep,nump,wordp,colname,data]
     _ddicts = [order,count,n,mode,most,hi,lo,
              mu,m2,sd,mre]
-    for _i in _dlsts: newdlist(_i,z)
-    for _i in _ddicts: newddict(_i,z)
+    for _i in _dlsts: _i[z] = []
+    for _i in _ddicts: _i[z] = {}
     csvindex = -1
     for csvcol in lst:
         isnum=True
@@ -109,10 +109,6 @@ def addRow(lst,z):
     skip = False
     undscorechk = re.match('__.*$',str(z))
     for c in klass[z]:
-        csvindex = order[z][c]
-        item = lst[csvindex]
-        if item != z:
-            skip = True
         if z == "main" or z == "train" or undscorechk:
             skip = False
     for c in colname[z]:
@@ -203,6 +199,13 @@ def removeData(z):
     removeTable(z)
     makeTable(col,z)
 
+def remakeTable(z):
+    temp_data = data[z][:]
+    temp_col = colname[z][:]
+    removeTable(z)
+    makeTable(temp_col,z)
+    for d in temp_data:
+        addRow(d,z)
 
 def copyTable(z,m,verbose):
     #copies table of z to m

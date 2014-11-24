@@ -69,7 +69,7 @@ class Branch:
         if args['d']:
             self.features.append(feature)
             self.conditions.append(condition)
-            buck_fea = [ i for i in buckets.keys() if feature == i[1:]][0]
+            buck_fea = [ i for i in buckets.keys() if feature == i][0]
             if condition:
                 if int(threshold) in buckets[buck_fea].hi.keys():
                     self.thresholds.append(buckets[buck_fea].hi[int(threshold)])
@@ -105,6 +105,8 @@ class Branch:
 class Branches:
     def __init__(branches):
         branches.collection = {}
+        branches.nodes = 0
+        branches.leaves = 0
 
     def __getitem__(branches,i):
         return branches.collection[i]

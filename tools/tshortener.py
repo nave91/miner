@@ -34,7 +34,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE."""                                           
+DEALINGS IN THE SOFTWARE."""                                         
                                           
 import sys
 sys.dont_write_bytecode = True
@@ -96,24 +96,20 @@ def tshortener(z,zlst,colname,data,dep,indep,patt=1.0,discretize=True):
     print outcols,"#infogained"
     #Convert outcols to discrete attributes
     if discretize:
-        outcols = [c[1:] for c in outcols]
         print outcols,"#discretized"
 
     reader.makeTable(outcols+dep[z],zshort)
     for r in data[z]:
         temp = []
         for i,c in enumerate(colname[z]):
-            if discretize:
-                if c[1:] in outcols or c in dep[z]:
-                    temp.append(r[i])
-            else:
-                if c in outcols+dep[z]:
-                    temp.append(r[i])
+            if c in outcols+dep[z]:
+                temp.append(r[i])
+        
         reader.addRow(temp,zshort)
     if discretize: discretizer(zshort,buckets)
+    reader.remakeTable(zshort)
     for Z in zlst:
         reader.removeTable(Z)
-    #discretizer(zshort,buckets)
     return zshort
 
 def discretizer(z,buckets):
@@ -121,8 +117,8 @@ def discretizer(z,buckets):
     if args['v'] > -1:
         sys.stderr.write("\n#Discretiziing data.\n")
     for b_ind,b in buckets.items():
-        if b.name[1:] in colname[z]:
-            cind = indexOf(z,b.name[1:])
+        if b.name in colname[z]:
+            cind = indexOf(z,b.name)
             for key,value in b.dinds.items():
                 for v in value:
                     if key in b.lo.keys():
@@ -136,7 +132,6 @@ def discretizer(z,buckets):
                     else:
                         b.hi[key] = data[z][v][cind]
                     data[z][v][cind] = key
-    #table.outCsv([z])
     
 def distance_pruner(zlst):
     #Prunes cluster tree i.e. zlst with distance between their centroids
@@ -209,6 +204,8 @@ def weighted_entropies(buckets):
         total = 0
         wsum = 0
         ls = []
+        if len(ds) < 1: 
+            sys.stderr.write("!!"*10+"Discretizing into one bucket"+"!!"*10+"\n")
         for ind,d in enumerate(ds):
             ls.append(len(d[1])*1.0)
             dinds[ind] = []
